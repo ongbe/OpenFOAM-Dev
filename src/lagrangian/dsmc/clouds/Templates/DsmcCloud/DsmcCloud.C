@@ -30,10 +30,7 @@ License
 #include "constants.H"
 #include "zeroGradientFvPatchFields.H"
 #include "polyMeshTetDecomposition.H"
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
 #include "GpuCloud.H"
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
 
 using namespace Foam::constant;
 
@@ -88,12 +85,9 @@ void Foam::DsmcCloud<ParcelType>::initialise
 {
     Info<< nl << "Initialising particles" << endl;
 
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
     Info<< nl << "Now initializing GpuCloud" << endl;
     
 
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
     const scalar temperature
     (
         readScalar(dsmcInitialiseDict.lookup("temperature"))
@@ -242,19 +236,10 @@ void Foam::DsmcCloud<ParcelType>::collisions()
 
     label collisions = 0;
 
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
-
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
     forAll(cellOccupancy_, cellI)
     {
         const DynamicList<ParcelType*>& cellParcels(cellOccupancy_[cellI]);
 
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
-	cout<<"Mesh cellvolumes "<<mesh_.cellVolumes()[cellI]<<" ";
-
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
         label nC(cellParcels.size());
 
         if (nC > 1)
@@ -273,10 +258,7 @@ void Foam::DsmcCloud<ParcelType>::collisions()
             List<label> whichSubCell(cellParcels.size());
 
             const point& cC = mesh_.cellCentres()[cellI];
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
 	    //point is actually a vector type of 3 dimensions
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
 
             forAll(cellParcels, i)
             {
@@ -294,12 +276,9 @@ void Foam::DsmcCloud<ParcelType>::collisions()
 
             // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
 	    //@todo: check if this is an array 
 	    //@todo: check collisionSelectionRemainder is an array
 	    
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
             scalar sigmaTcRMax = sigmaTcRMax_[cellI];
 
             scalar selectedPairs =
@@ -311,10 +290,7 @@ void Foam::DsmcCloud<ParcelType>::collisions()
 
             collisionSelectionRemainder_[cellI] = selectedPairs - nCandidates;
 
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
 	    //check what this operation does
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
             collisionCandidates += nCandidates;
 
             for (label c = 0; c < nCandidates; c++)
@@ -406,13 +382,10 @@ void Foam::DsmcCloud<ParcelType>::collisions()
         }
     }
 
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
     cout<<"finished\n";
     //this function checks if the simulation is run in parallel
     //if its run in parallel it does parallel reduction
     //else it just returns the first value
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
     reduce(collisions, sumOp<label>());
 
     reduce(collisionCandidates, sumOp<label>());
@@ -707,10 +680,7 @@ Foam::DsmcCloud<ParcelType>::DsmcCloud
     ),
     constProps_(),
     rndGen_(label(149382906) + 7183*Pstream::myProcNo()),
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
-=======
     gpu_(),
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
     boundaryT_
     (
         volScalarField
@@ -766,18 +736,15 @@ Foam::DsmcCloud<ParcelType>::DsmcCloud
         )
     )
 {
-<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
     buildConstProps();
 
     buildCellOccupancy();
 
-=======
     gpu_.initialise();
     buildConstProps();
 
     buildCellOccupancy();
 	Info<< nl <<"Initialized called Edit"<<endl;
->>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.C
     // Initialise the collision selection remainder to a random value between 0
     // and 1.
     forAll(collisionSelectionRemainder_, i)
