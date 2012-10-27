@@ -44,6 +44,10 @@ SourceFiles
 #include "fvMesh.H"
 #include "volFields.H"
 #include "scalarIOField.H"
+<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
+=======
+#include "GpuCloud.H"
+>>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -61,6 +65,11 @@ class WallInteractionModel;
 template<class CloudType>
 class InflowBoundaryModel;
 
+<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
+=======
+class GpuCloud;
+
+>>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
 /*---------------------------------------------------------------------------*\
                          Class DsmcCloud Declaration
 \*---------------------------------------------------------------------------*/
@@ -80,6 +89,11 @@ class DsmcCloud
         //- References to the mesh and time databases
         const fvMesh& mesh_;
 
+<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
+=======
+	//- references to the gpu class
+
+>>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
         //- Dictionary of particle properties
         IOdictionary particleProperties_;
 
@@ -135,7 +149,13 @@ class DsmcCloud
 
         //- Random number generator
         Random rndGen_;
+<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
 
+=======
+	
+	// - GpuCloud
+	GpuCloud gpu_;
+>>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
 
         // boundary value fields
 
@@ -266,6 +286,12 @@ public:
                 //- Return refernce to the random object
                 inline Random& rndGen();
 
+<<<<<<< HEAD:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
+=======
+		//- Return reference to Gpu cloud
+		inline GpuCloud& gpu();
+
+>>>>>>> f861cd45a5b3f89ff4e31bba7468b2e58d0a2272:src/lagrangian/dsmc/clouds/Templates/DsmcCloud/DsmcCloud.H
 
             // References to the boundary fields for surface data collection
 
